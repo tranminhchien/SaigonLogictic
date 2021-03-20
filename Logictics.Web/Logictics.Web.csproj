@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\assets\node_modules\**" />
+    <Content Remove="wwwroot\assets\node_modules\**" />
+    <EmbeddedResource Remove="wwwroot\assets\node_modules\**" />
+    <None Remove="wwwroot\assets\node_modules\**" />
+    <TypeScriptCompile Remove="wwwroot\assets\node_modules\**" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="linq2db" Version="3.2.3" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.2.3">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.0" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Logictics.DAL\Logictics.DAL.csproj" />
+    <ProjectReference Include="..\Logictics.Entity\Logictics.Entity.csproj" />
+    <ProjectReference Include="..\Logictics.Service\Logictics.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\assets\image\background\Thumbs.db" />
+  </ItemGroup>
+
+</Project>

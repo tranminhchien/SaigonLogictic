@@ -1,0 +1,125 @@
+﻿@model List<Logictics.Service.ViewModel.OrderViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@section extendCSS{ }
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Customer</h1>
+                </div><!-- /.col -->
+
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <section class="content">
+        <!-- Main row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- /.card -->
+                <div class="card">
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Code</th>
+                                    <th>Customer Confirm</th>
+                                    <th>Weight</th>
+                                    <th>Sender Name</th>
+                                    <th>Phone #</th>
+                                    <th>Create Date</th>
+                                    <th>Pickup Date</th>
+                                    <th>Status</th>
+                                    <th>Date of Status</th>
+                                    <th>Number Of DOCS</th>
+                                    <th>Shipment</th>
+                                    <th>Recipient Name</th>
+                                    <th>Address</th>
+                                    <th>Phone ##</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null)
+                                {
+
+                                    var x = 1;
+                                    foreach (var item in Model)
+                                    {
+                                <tr>
+                                    <td>@(x++)</td>
+                                    <td>@item.Id</td>
+                                    <td>@item.CustomerConfirm</td>
+                                    <th>@item.TotalWeight</th>
+                                    <th>@item.SenderName</th>
+                                    <th>@item.PhoneSender</th>
+                                    <td data-order='@String.Format("{0:yyyy MM dd HH:mm:ss}", item.CreateDate)'>
+                                        @String.Format("{0:dd MMM yyyy HH:mm:ss}", item.CreateDate)<br />
+                                    </td>
+                                    <td data-order='@String.Format("{0:yyyy MM dd HH:mm:ss}", item.PickupDate)'>
+                                        @String.Format("{0:dd MMM yyyy HH:mm:ss}", item.PickupDate)<br />
+                                    </td>
+                                    <td>@item.Status</td>
+                                    <td data-order='@String.Format("{0:yyyy MM dd HH:mm:ss}", item.ModifyDate)'>
+                                        @String.Format("{0:dd MMM yyyy HH:mm:ss}", item.ModifyDate)<br />
+                                    </td>
+                                    <td>@item.NumberOfDOCS</td>
+                                    <td>@item.Shipment</td>
+                                    <td>@item.RecipientName</td>
+                                    <td>@item.RecipientAddress</td>
+                                    <td>@item.RecipientPhone</td>
+                                    <td>@item.Notes</td>
+                                </tr>
+                                    }
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Code</th>
+                                    <th>Customer Confirm</th>
+                                    <th>Weight</th>
+                                    <th>Sender Name</th>
+                                    <th>Phone #</th>
+                                    <th>Create Date</th>
+                                    <th>Pickup Date</th>
+                                    <th>Status</th>
+                                    <th>Date of Status</th>
+                                    <th>Number Of DOCS</th>
+                                    <th>Shipment</th>
+                                    <th>Recipient Name</th>
+                                    <th>Address</th>
+                                    <th>Phone ##</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                    <!-- /.card-body -->
+
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+@section extendScripts{
+    <!-- page script -->
+    <script>
+        $(function () {
+            initEsuDatatables($('#example1'), 10, "desc", 1, true, true);
+        });
+    </script>
+}

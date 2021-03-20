@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Logictics</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Favicon icon -->
+    @*<link rel="icon" type="image/png" sizes="16x16" href="~/assets/images/favicon.png">*@
+    <!-- ASP.NET MVC -->
+    @*@Styles.Render("~/Assets/Content")*@
+    <!-- adminLTE css -->
+    @await Html.PartialAsync("~/Views/Shared/AdminListPatial/_CSS.cshtml")
+    <!-- load more css -->
+    @RenderSection("extendCSS", required: false)
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+       @await Html.PartialAsync("~/Views/Shared/AdminPartial/_TopNavBar.cshtml")
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+       @await Html.PartialAsync("~/Views/Shared/AdminPartial/_LeftPanel.cshtml")
+        <!-- /.main-sidebar-container -->
+        <!-- Content Wrapper -->
+        @RenderBody()
+        <!-- /.content-wrapper -->
+        <!-- Footer -->
+       @await Html.PartialAsync("~/Views/Shared/AdminPartial/_Footer.cshtml")
+        <!-- /.footer -->
+        <!-- Control Sidebar -->
+        <!-- <aside class="control-sidebar control-sidebar-dark"> -->
+        <!-- </aside> -->
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ASP.NET MVC -->
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <!-- adminLTE js -->
+   @await Html.PartialAsync("~/Views/Shared/AdminListPatial/_Script.cshtml")
+    <!-- load more script -->
+    @RenderSection("extendScripts", required: false)
+</body>
+</html>

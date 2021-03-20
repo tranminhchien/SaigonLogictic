@@ -1,0 +1,218 @@
+@charset "UTF-8";
+/* ******************************************************************
+	--sp-home.css--
+****************************************************************** */
+@media only screen and (min-width: 768px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (min-width: 800px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (min-width: 812px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (min-width: 834px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (min-width: 900px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (min-width: 960px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (min-width: 1024px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (min-width: 1112px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (min-width: 1200px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (min-width: 1280px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (min-width: 1350px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (min-width: 1400px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (min-width: 1600px){
+	
+}
+@media only screen and (min-width: 1900px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (min-width: 2000px){
+	
+}
+@media only screen and (min-width: 2100px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (min-width: 2800px){
+	
+}
+@media only screen and (max-width: 767px){
+/*********************sp-home.css***************************/
+	.format_input .label_file_label{
+		color: #333;
+	}
+}
+@media only screen and (max-width: 736px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 734px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 722px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (max-width: 695px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 685px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 668px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (max-width: 641px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 602px){
+/*********************sp-home.css***************************/
+	
+}
+@media only screen and (max-width: 599px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 576px){
+/*********************sp-home.css***************************/	
+}
+@media only screen and (max-width: 570px){
+/*********************sp-home.css***************************/
+	.slide_magazine_ct {
+		padding: 50px;
+	}
+	
+}
+@media only screen and (max-width: 569px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 553px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 534px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 515px){
+/*********************sp-home.css***************************/
+	.form_row_50, .form_row_right_50 {
+		width: 100%;
+	}
+	.slide_magazine_ct {
+		padding: 30px;
+	}
+	.format_fu .label_file_label{
+		font-size: 14px;
+	}
+	.left_button, .right_button {
+		width: 100%;
+	}
+	.left_button{
+		margin-bottom: 10px;
+	}
+	.format_fu {
+		width: 70%;
+	}
+	.fileUpload {
+		width: 30%;
+	}
+}
+@media only screen and (max-width: 481px){
+/*********************sp-home.css***************************/
+	.g-recaptcha {
+		transform: scale(0.9);
+		-webkit-transform: scale(0.9);
+		transform-origin: left top;
+		-webkit-transform-origin: left top;
+		transform-origin: 0 0;
+		-webkit-transform-origin: 0 0;
+	}
+	.g-recaptcha {
+		width: 309px;
+	}
+}
+@media only screen and (max-width: 414px){
+/*********************sp-home.css***************************/
+	.logo_appkanji {
+		margin-top: 50px;
+	}
+	.g-recaptcha {
+		transform: scale(0.9);
+		-webkit-transform: scale(0.9);
+	}
+}
+@media only screen and (max-width: 401px){
+/*********************sp-home.css***************************/
+	.g-recaptcha {
+		transform: scale(0.86);
+		-webkit-transform: scale(0.86);
+	}
+}
+@media only screen and (max-width: 385px){
+/*********************sp-home.css***************************/
+	.g-recaptcha {
+		transform: scale(0.82);
+		-webkit-transform: scale(0.82);
+	}
+}
+@media only screen and (max-width: 376px){
+/*********************sp-home.css***************************/
+	.g-recaptcha {
+		transform: scale(0.85);
+		-webkit-transform: scale(0.85);
+	}
+}
+@media only screen and (max-width: 361px){
+/*********************sp-home.css***************************/
+	.g-recaptcha {
+		transform: scale(0.81);
+		-webkit-transform: scale(0.81);
+	}
+}
+@media only screen and (max-width: 343px){
+/*********************sp-home.css***************************/
+	.format_fu {
+		width: 60%;
+	}
+	.fileUpload {
+		width: 40%;
+	}
+	.g-recaptcha {
+		transform: scale(0.75);
+		-webkit-transform: scale(0.75);
+	}
+}
+@media only screen and (max-width: 340px){
+/*********************sp-home.css***************************/
+}
+@media only screen and (max-width: 320px){
+/*********************sp-home.css***************************/
+	.g-recaptcha {
+		transform: scale(0.69);
+		-webkit-transform: scale(0.69);
+	}
+}
+
+

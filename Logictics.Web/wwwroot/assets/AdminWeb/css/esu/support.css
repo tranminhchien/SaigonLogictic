@@ -1,0 +1,7 @@
+﻿* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+:root { 
+    --chinese-font-family: "San Francisco";
+}

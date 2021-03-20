@@ -1,0 +1,284 @@
+﻿* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+:root {
+    --close--button-color: #cd1c00;
+    --dict--details-container-boder: #e0e0e0;
+    --dict--details-background-color: #fcfcfc;
+    --emphasize--text-main-detail-color: #ff0000;
+    --emphasize--text-details-color: #ed7d31;
+    --list--style-color: #919191;
+    --dict--basic--container-text-color: #000000;
+    --horizontal-line-color: rgb(198, 198, 200);
+}
+
+:root {
+    --japanese-font-family: "Noto Sans JP";
+    --chinese-font-family: "San Francisco";
+    --vietnamese-font-family: "Times New Roman", Times, serif;
+}
+
+/* for desktop */
+:root {
+    --basic--horizontal--line-size: 60vmin;
+    --detail--horizontal--line-size: 60vmin;
+    --details-default-text-size: 3vmin;
+    --top--dict--details-left-width: 40%;
+    --top--dict--details-right-width: 60%;
+    --details--content-left-width: 10vmin;
+    --details--content-right-width: 40vmin;
+    --details--content-item-spacing: 2vmin;
+    --right--taskbar-padding-top: -2vmin 6vmin 0vmin;
+    --default-text-size: 3vmin;
+    --child--1-text-size: 3vmin;
+    --child--2-text-size: 18vmin;
+    --child--3-text-size: 6vmin;
+    --child--5-text-size: 6vmin;
+    --child--7-text-size: 6vmin;
+    --detail--1-text-size: 3vmin;
+    --detail--2-text-size: 3vmin;
+    --detail--3-text-size: 3vmin;
+}
+/* for mobile */
+@media only screen and (max-width: 1024px) {
+    :root {
+        --basic--horizontal--line-size: 72vw;
+        --detail--horizontal--line-size: 48vw;
+        --details-default-text-size: 4vw;
+        --top--dict--details-left-width: 30%;
+        --top--dict--details-right-width: 70%;
+        --details--content-left-width: 13vw;
+        --details--content-right-width: 58vw;
+        --details--content-item-spacing: 2vw;
+        --right--taskbar-padding-top: -2vw 2vw 0vw;
+        --default-text-size: 5.8vw;
+        /* dieu chinh kich thuoc */
+        --child--1-text-size: 3.06vw;
+        --child--2-text-size: 22.3vw;
+        --child--3-text-size: 7vw;
+        --child--5-text-size: 5.6vw;
+        --child--7-text-size: 4.7vw;
+        --detail--1-text-size: 4.8vw;
+        --detail--2-text-size: 4.2vw;
+        --detail--3-text-size: 3.7vw;
+    }
+}
+
+/* basic, test, suggest */
+.dict__basic__container {
+    background-color: #fff;
+    display: block;
+    width: auto;
+    text-align: center;
+    color: var(--dict--basic--container-text-color);
+}
+
+    .dict__basic__container p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .dict__basic__container hr {
+        margin: 1vw auto;
+        width: var(--basic--horizontal--line-size);
+        border: 0;
+        border-top: 1px solid var(--horizontal-line-color);
+    }
+
+    .dict__basic__container tbody {
+        display: inline-flex;
+    }
+
+        .dict__basic__container tbody tr td p:nth-child(1) {
+            color: #989898;
+            text-align: center;
+            font-size: var(--child--1-text-size);
+            font-family: var(--chinese-font-family);
+        }
+
+        .dict__basic__container tbody tr td p:nth-child(2) {
+            font-size: var(--child--2-text-size);
+            font-family: var(--japanese-font-family);
+        }
+
+        .dict__basic__container tbody tr td p:nth-child(3) {
+            font-size: var(--child--3-text-size);
+            font-weight: bold;
+            font-family: var(--chinese-font-family);
+        }
+
+        .dict__basic__container tbody tr td p:nth-child(5) {
+            font-size: var(--child--5-text-size);
+            font-family: var(--japanese-font-family);
+        }
+
+        .dict__basic__container tbody tr td p:nth-child(7) {
+            font-size: var(--child--7-text-size);
+            font-style: italic;
+            font-family: var(--vietnamese-font-family);
+        }
+
+/* top details */
+body,
+.top__dict__detail p,
+.dict__details p {
+    margin: 0;
+    padding: 0;
+}
+
+.top__dict__detail {
+    background-color: #fff;
+    display: block;
+    padding: 4vw 0;
+    margin: 0 auto;
+    font-size: var(--default-text-size);
+    border-bottom: 1px solid #e9e9e9;
+}
+
+    .top__dict__detail hr {
+        margin: 1vw auto;
+        width: var(--detail--horizontal--line-size);
+        border: 0;
+        border-top: 1px solid var(--horizontal-line-color);
+    }
+
+    .top__dict__detail tbody {
+        display: flex;
+    }
+
+        .top__dict__detail tbody tr {
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+            .top__dict__detail tbody tr td:nth-child(1) {
+                padding-right: 5vw;
+            }
+
+                .top__dict__detail tbody tr td:nth-child(1) p:nth-child(1) {
+                    color: #989898;
+                    text-align: center;
+                    font-size: var(--child--1-text-size);
+                    font-family: var(--chinese-font-family);
+                }
+
+                .top__dict__detail tbody tr td:nth-child(1) p:nth-child(2) {
+                    font-size: var(--child--2-text-size);
+                    font-family: var(--japanese-font-family);
+                    margin-left: auto;
+                    margin-right: 2vw;
+                }
+
+            .top__dict__detail tbody tr td:nth-child(2) {
+                display: inline-block;
+                text-align: center;
+            }
+
+                .top__dict__detail tbody tr td:nth-child(2) p:nth-child(1) {
+                    font-family: var(--chinese-font-family);
+                    font-size: var(--child--3-text-size);
+                    font-weight: bold;
+                }
+
+                .top__dict__detail tbody tr td:nth-child(2) p:nth-child(3) {
+                    font-family: var(--japanese-font-family);
+                    font-size: var(--child--5-text-size);
+                }
+
+                .top__dict__detail tbody tr td:nth-child(2) p:nth-child(5) {
+                    font-family: var(--vietnamese-font-family);
+                    font-size: var(--child--7-text-size);
+                    font-style: italic;
+                }
+
+/* details */
+.dict__details__container {
+    background-color: var(--dict--details-background-color);
+    font-size: var(--details-default-text-size);
+    position: relative;
+    border-top: 6px solid #f5f6f6;
+}
+
+    .dict__details__container hr {
+        border: 0;
+        border-top: 1px solid #e0e0e0;
+        width: 90%;
+    }
+
+.dict__details__container__main {
+    display: flex;
+    align-items: stretch;
+}
+
+.dict__details {
+    border-collapse: collapse;
+    margin: 0 auto;
+    margin-top: 3vw;
+    width: 92%;
+}
+
+    .dict__details tbody tr td {
+        border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+        padding: 3px 0 5px 0px;
+    }
+
+        .dict__details tbody tr td:nth-child(1) {
+            border-right: 1px solid rgba(128, 128, 128, 0.2);
+        }
+
+            .dict__details tbody tr td:nth-child(1) p {
+                font-size: var(--detail--1-text-size);
+                font-family: var(--japanese-font-family);
+            }
+
+        .dict__details tbody tr td:nth-child(2) p:nth-child(1) {
+            font-size: var(--detail--2-text-size);
+            font-family: var(--chinese-font-family);
+        }
+
+            .dict__details tbody tr td:nth-child(2) p:nth-child(1) span {
+                font-size: var(--detail--2-text-size);
+                font-family: var(--japanese-font-family);
+            }
+
+        .dict__details tbody tr td:nth-child(2) p:nth-child(2) {
+            font-size: var(--detail--3-text-size);
+            font-family: var(--vietnamese-font-family), Times, serif;
+            font-style: italic;
+        }
+
+    .dict__details tbody,
+    .dict__details tbody tr,
+    .dict__details tbody tr td {
+        vertical-align: top;
+        padding-top: var(--details--content-item-spacing);
+    }
+
+        .dict__details tbody tr td:nth-child(1) {
+            padding-right: 3vw;
+            text-align: right;
+            width: 25%;
+        }
+
+        .dict__details tbody tr td:nth-child(2) {
+            padding-left: 3vw;
+        }
+
+        .dict__details tbody tr td:nth-child(3) {
+            text-align: left;
+            padding-left: 3vw;
+            vertical-align: middle;
+            width: 15%;
+        }
+
+            .dict__details tbody tr td:nth-child(3) iframe {
+                width: 4vw;
+                height: 10vw;
+            }
+
+            .dict__details tbody tr td:nth-child(3) img {
+                width: 4.4vw;
+            }

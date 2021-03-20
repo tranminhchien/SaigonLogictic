@@ -1,0 +1,235 @@
+﻿* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+:root {
+    --close--button-color: #cd1c00;
+    --dict--details-container-boder: #e0e0e0;
+    --dict--details-background-color: #f9f9f9;
+    --emphasize--text-main-detail-color: #ff0000;
+    --emphasize--text-details-color: #ed7d31;
+    --list--style-color: #919191;
+    --dict--basic--container-text-color: #000000;
+    --horizontal-line-color: rgb(199, 199, 201);
+    --basic-hr-size: 60vmin;
+    --detail-hr-size: 40vmin;
+    --dict--basic-default-text-size: 4vmin;
+    --dict--basic-li-child-1: 16vmin;
+    --dict--basic-li-child-2: 6vmin;
+    --dict--details-default-text-size: 3vmin;
+    --top--dict--details-left-width: 40%;
+    --top--dict--details-right-width: 60%;
+    --details--content-left-width: 10vmin;
+    --details--content-right-width: 40vmin;
+    --details--content-item-spacing: 2vmin;
+    --right--taskbar-padding-top: -2vmin 6vmin 0vmin;
+}
+
+@media only screen and (max-width: 320px), (max-width: 360px), (max-width: 480px), (max-width: 768px), (max-width: 1024px) {
+    :root {
+        --basic-hr-size: 70vw;
+        --detail-hr-size: 50vw;
+        --dict--basic-default-text-size: 5.8vw;
+        --dict--basic-li-child-1: 22vw;
+        --dict--basic-li-child-2: 7.4vw;
+        --dict--details-default-text-size: 4vw;
+        --top--dict--details-left-width: 30%;
+        --top--dict--details-right-width: 70%;
+        --details--content-left-width: 13vw;
+        --details--content-right-width: 58vw;
+        --details--content-item-spacing: 2vw;
+        --right--taskbar-padding-top: -2vw 2vw 0vw;
+    }
+}
+
+.bacic__emphazise__text {
+    color: var(--close--button-color);
+}
+
+.detail__emphasize__text {
+    color: var(--emphasize--text-details-color);
+}
+
+.text__align--center {
+    text-align: center;
+}
+
+.visible__less {
+    visibility: hidden;
+}
+
+.dict__basic__container {
+    display: block;
+    width: auto;
+    text-align: center;
+    color: var(--dict--basic--container-text-color);
+    font-size: var(--dict--basic-default-text-size);
+}
+
+    .dict__basic__container p,
+    .top__dict__detail p,
+    .dict__details p,
+    .dict__details ul {
+        margin: 0;
+        padding: 0;
+    }
+
+.dict__basic__container,
+.top__dict__detail {
+    background-color: #fff;
+}
+
+    /*.dict__basic__container tbody tr td p:nth-child(1),
+    .dict__basic__container tbody tr td p:nth-child(2),
+    .dict__basic__container tbody tr td p:nth-child(4),
+    .top__dict__detail tbody tr td:nth-child(1),
+    .top__dict__detail tbody tr td:nth-child(2) p:nth-child(1),
+    .top__dict__detail tbody tr td:nth-child(2) p:nth-child(2),
+    .top__dict__detail tbody tr td:nth-child(2) p:nth-child(3),
+    .dict__details tbody tr td:nth-child(2),
+    .dict__details tbody tr td:nth-child(3) {
+        font-family: "Noto Sans JP", sans-serif;
+    }
+
+        .dict__basic__container tbody tr td p:nth-child(6),
+        .top__dict__detail tbody tr td:nth-child(2) p:nth-child(5),
+        .dict__details tbody tr td:nth-child(3) > p > i {
+            font-family: "Times New Roman", Times, serif;
+        }*/
+
+    .dict__basic__container hr,
+    .top__dict__detail hr {
+        margin: 1.5vw auto;
+        border: 0;
+        border-top: 1px solid var(--horizontal-line-color);
+    }
+
+    .dict__basic__container hr {
+        width: var(--basic-hr-size);
+    }
+
+    .dict__basic__container tbody {
+        display: inline-flex;
+    }
+
+        .dict__basic__container tbody tr td p:nth-child(1) {
+            font-size: var(--dict--basic-li-child-1);
+        }
+
+        .dict__basic__container tbody tr td p:nth-child(2) {
+            font-size: var(--dict--basic-li-child-2);
+        }
+
+.top__dict__detail {
+    display: block;
+    padding: 4vw 0;
+    margin: 0 auto;
+    font-size: var(--dict--basic-default-text-size);
+}
+
+    .top__dict__detail hr {
+        width: var(--detail-hr-size);
+    }
+
+    .top__dict__detail tbody {
+        display: flex;
+    }
+
+        .top__dict__detail tbody tr {
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+            .top__dict__detail tbody tr td:nth-child(1) {
+                font-size: var(--dict--basic-li-child-1);
+                padding-right: 4vw;
+            }
+
+                .top__dict__detail tbody tr td:nth-child(1) > b {
+                    margin-left: auto;
+                    margin-right: 2vw;
+                }
+
+            .top__dict__detail tbody tr td:nth-child(2) {
+                display: inline-block;
+                text-align: center;
+            }
+
+                .top__dict__detail tbody tr td:nth-child(2) p:nth-child(1) {
+                    font-size: var(--dict--basic-li-child-2);
+                }
+
+.top__dict__detail--right ul li:first-child {
+    font-size: var(--dict--basic-li-child-2);
+    font-weight: 900;
+}
+
+.dict__details__container {
+    border: 1px solid var(--dict--details-container-boder);
+    background-color: var(--dict--details-background-color);
+    font-size: var(--dict--details-default-text-size);
+    position: relative;
+}
+
+    .dict__details__container hr {
+        border: 0;
+        border-top: 1px solid #e0e0e0;
+        width: 90%;
+    }
+
+.dict__details__container__main {
+    display: flex;
+    align-items: stretch;
+}
+
+.dict__details {
+    width: 90%;
+}
+
+    .dict__details tbody,
+    .dict__details tbody tr,
+    .dict__details tbody tr td {
+        vertical-align: top;
+        padding-top: var(--details--content-item-spacing);
+    }
+
+        .dict__details tbody tr td:nth-child(1) {
+            width: 13%;
+        }
+
+            .dict__details tbody tr td:nth-child(1) p {
+                margin-left: 2vw;
+            }
+
+            .dict__details tbody tr td:nth-child(1) iframe {
+                max-width: 4vw;
+                max-height: 8vw;
+            }
+
+        .dict__details tbody tr td:nth-child(2) {
+            text-align: right;
+            width: 26%;
+        }
+
+        .dict__details tbody tr td:nth-child(3) {
+            padding-left: 3vw;
+            width: 100%;
+        }
+
+.dict__details__taskbar {
+    display: flex;
+    width: 10%;
+    height: auto;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: center;
+    max-height: 30vw;
+}
+
+    .dict__details__taskbar > div {
+        width: 100%;
+        text-align: center;
+        margin: 1vw 0;
+    }

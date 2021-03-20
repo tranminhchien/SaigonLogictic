@@ -1,0 +1,145 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+
+@font-face {
+	font-family: "San Francisco";
+	font-weight: 400;
+	src: url("https://sf.abarba.me/SF-UI-Display-Regular.otf");
+}
+
+* {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+}
+
+/* common css */
+:root {
+	--horizontal-line-color: rgb(199, 199, 201);
+	--japanese-font-family: "Noto Sans JP";
+	--chinese-font-family: "San Francisco";
+	--vietnamese-font-family: "Times New Roman", Times, serif;
+}
+
+:root {
+	--detail--horizontal--line-size: 40vmin;
+	--default-font-size: 4vmin;
+	--syl--word-position: 3vmin;
+	--syl--header-child-2: 18vmin;
+	--syl--header-child-3: 12vmin;
+	--syl--answer--box-width: 18vmin;
+	--syl--answer--box-line-height: 10vmin;
+	--syl--answer--box-font-size: 4vmin;
+	--syl--answer--tr-child-1-font-size: 5vmin;
+	--syl--answer--tr-child-2-font-size: 7vmin;
+	--syl--suggest-child-1: 3vmin;
+	--syl--suggest-child-2: 18vmin;
+	--syl--suggest-child-3: 6vmin;
+	--syl--answer--wrap-text-line-height: 14vmin;
+}
+
+@media only screen and (max-width: 320px), (max-width: 360px), (max-width: 480px), (max-width: 768px), (max-width: 1024px) {
+	:root {
+		--detail--horizontal--line-size: 48vw;
+		--default-font-size: 5.8vw;
+		--syl--word-position: 3vw;
+		/* android use 11vw and 5vw */
+		--syl--header-child-2: 11vw;
+		--syl--header-child-3: 5vw;
+		--syl--answer--box-width: 12vw;
+		--syl--answer--box-line-height: 7vw;
+		--syl--answer--box-font-size: 4vw;
+		--syl--answer--tr-child-1-font-size: 4vw;
+		--syl--answer--tr-child-2-font-size: 6vw;
+		--syl--suggest-child-1: 4vw;
+		--syl--suggest-child-2: 26vw;
+		--syl--suggest-child-3: 9vw;
+		--syl--answer--wrap-text-line-height: 10vw;
+	}
+}
+
+/* custome css */
+/* header */
+.syllable__header {
+	border-collapse: collapse;
+	width: 100%;
+	background-color: #ffffff;
+	overflow: hidden;
+}
+
+	.syllable__header tbody tr {
+		margin: 0 auto;
+	}
+
+		.syllable__header tbody tr td:nth-child(1) {
+			padding-top: 1vw;
+			text-align: center;
+			vertical-align: top;
+			width: 25%;
+			font-size: var(--syl--word-position);
+			opacity: 0.5;
+			font-family: var(--chinese-font-family);
+		}
+
+		.syllable__header tbody tr td:nth-child(2) {
+			width: 25%;
+			font-size: var(--syl--header-child-2);
+			font-family: var(--japanese-font-family);
+		}
+
+		.syllable__header tbody tr td:nth-child(3) {
+			font-size: var(--syl--header-child-3);
+			font-family: var(--chinese-font-family);
+		}
+
+/* answer zone */
+.answer_trans {
+	border-collapse: collapse;
+	border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+	width: 100%;
+	text-align: center;
+	background-color: #ffffff;
+}
+
+	.answer_trans tbody tr {
+		vertical-align: middle;
+	}
+
+		.answer_trans tbody tr td {
+			padding: 2vw;
+		}
+
+		.answer_trans tbody tr:nth-child(odd) {
+			font-size: var(--syl--answer--tr-child-1-font-size);
+		}
+
+		.answer_trans tbody tr td:nth-child(odd) {
+			border-right: 1px solid rgba(128, 128, 128, 0.2);
+			width: 50%;
+		}
+
+		.answer_trans tbody tr:nth-child(1) td:nth-child(1) {
+			font-family: var(--chinese-font-family);
+		}
+
+		.answer_trans tbody tr:nth-child(1) td:nth-child(2) {
+			font-family: var(--vietnamese-font-family);
+			font-style: italic;
+		}
+
+		.answer_trans tbody tr:nth-child(2) {
+			font-family: var(--japanese-font-family);
+		}
+
+			.answer_trans tbody tr:nth-child(2) td:nth-child(1) {
+				font-size: var(--syl--answer--tr-child-2-font-size);
+			}
+
+			.answer_trans tbody tr:nth-child(2) td:nth-child(2) {
+				font-size: var(--syl--answer--box-font-size);
+				line-height: var(--syl--answer--wrap-text-line-height);
+			}
+
+.replace_text {
+	text-align: center;
+	border: 1px solid;
+	padding: 1vw 3vw;
+}

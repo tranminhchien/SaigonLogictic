@@ -1,0 +1,161 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@section extendCSS{
+    <style>
+        .productDetailInput input {
+            margin-left: 15px;
+        }
+
+        .smallInput {
+            width: 85px;
+        }
+
+        .mediumInput {
+            width: 160px;
+        }
+
+        .largeInput {
+            width: 242px;
+        }
+
+        .productDetailInput .btnAddOrderDetail {
+            width: 85px;
+            margin-left: 30px;
+            padding: 0px 10px;
+        }
+
+        .orderInput div {
+            margin-right: 15px;
+        }
+
+        .btn-custom-violet {
+            color: #ffffff;
+            background-color: blueviolet;
+            border-color: blueviolet;
+            box-shadow: none;
+        }
+
+            .btn-custom-violet:hover {
+                color: #ffffff;
+                background-color: blueviolet;
+                border-color: blueviolet;
+            }
+
+            .btn-custom-violet:focus, .btn-custom-violet.focus {
+                color: #ffffff;
+                background-color: blueviolet;
+                border-color: blueviolet;
+                box-shadow: none, 0 0 0 0 rgba(72, 180, 97, 0.5);
+            }
+
+            .btn-custom-violet.disabled, .btn-custom-violet:disabled {
+                color: #ffffff;
+                background-color: blueviolet;
+                border-color: blueviolet;
+            }
+
+            .btn-custom-violet:not(:disabled):not(.disabled):active, .btn-custom-violet:not(:disabled):not(.disabled).active,
+            .show > .btn-custom-violet.dropdown-toggle {
+                color: #ffffff;
+                background-color: blueviolet;
+                border-color: blueviolet;
+            }
+
+                .btn-custom-violet:not(:disabled):not(.disabled):active:focus, .btn-custom-violet:not(:disabled):not(.disabled).active:focus,
+                .show > .btn-custom-violet.dropdown-toggle:focus {
+                    box-shadow: 0 0 0 0 rgba(72, 180, 97, 0.5);
+                }
+    </style>
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Create</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="~/User/Index">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Order</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <!-- Main row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <!-- /.card -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="input-group d-flex align-items-center">
+                            <a href="~/@(Role.Admin)/Order/Index">Quay Về</a>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex productDetailInput">
+                        @Html.DropDownList("ListCategory", null, "Chưa chọn", new { @class = "form-control form-control-sm selectpicker", @data_live_search = "true", @data_size = "5" })
+                        <input type="text" placeholder="Product Code" id="productCode" name="productCode" value="" class="form-control form-control-sm" />
+                        <input type="text" placeholder="Description" id="description" name="description" value="" class="form-control form-control-sm" />
+                        <input type="number" placeholder="Quality" id="quality" name="quality" value="" class="form-control form-control-sm smallInput" />
+                        <input type="number" placeholder="Weight" id="weight" name="weight" value="" class="form-control form-control-sm smallInput" />
+                        <input type="number" placeholder="Price" id="price" name="price" value="" class="form-control form-control-sm smallInput" />
+                        <button class="btnAddOrderDetail btn btn-success" id="btnAddOrderDetail">
+                            <i class="fas fa-plus-circle">&nbsp;Add</i>
+                        </button>
+                    </div>
+
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Category</th>
+                                    <th>ProductCode</th>
+                                    <th>Description</th>
+                                    <th>Quality</th>
+                                    <th>Weight</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <div class="card-body d-flex orderInput">
+                        <div>
+                            <div>Store</div>
+                            @Html.DropDownList("ListStore", null, "Chưa chọn", new { @class = "form-control form-control-sm selectpicker largeInput", @data_live_search = "true", @data_size = "5" })
+                        </div>
+                        <div>
+                            <div>Total Weight</div>
+                            <input type="text" placeholder="Total Weight" id="totalWeight" name="totalWeight" value="" class="form-control form-control-sm smallInput" />
+                        </div>
+                        <div>
+                            <div>Customer Phone</div>
+                            <input type="text" placeholder="Customer Phone" id="customerPHone" name="customerPHone" value="" class="form-control form-control-sm mediumInput" />
+                        </div>
+                        <button class="btnAddOrder btn btn-custom-violet" id="btnAddOrderDetail">
+                            Create Order
+                        </button>
+                    </div>
+
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>

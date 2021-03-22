@@ -15,7 +15,6 @@
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark">Customer</h1>
                 </div><!-- /.col -->
-
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
@@ -46,39 +45,41 @@
                                     <th>Address</th>
                                     <th>Phone ##</th>
                                     <th>Notes</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model != null)
-                                {
+                                @if (Model != null) {
 
                                     var x = 1;
-                                    foreach (var item in Model)
-                                    {
-                                <tr>
-                                    <td>@(x++)</td>
-                                    <td>@item.Id</td>
-                                    <td>@item.CustomerConfirm</td>
-                                    <th>@item.TotalWeight</th>
-                                    <th>@item.SenderName</th>
-                                    <th>@item.PhoneSender</th>
-                                    <td data-order='@String.Format("{0:yyyy MM dd HH:mm:ss}", item.CreateDate)'>
-                                        @String.Format("{0:dd MMM yyyy HH:mm:ss}", item.CreateDate)<br />
-                                    </td>
-                                    <td data-order='@String.Format("{0:yyyy MM dd HH:mm:ss}", item.PickupDate)'>
-                                        @String.Format("{0:dd MMM yyyy HH:mm:ss}", item.PickupDate)<br />
-                                    </td>
-                                    <td>@item.Status</td>
-                                    <td data-order='@String.Format("{0:yyyy MM dd HH:mm:ss}", item.ModifyDate)'>
-                                        @String.Format("{0:dd MMM yyyy HH:mm:ss}", item.ModifyDate)<br />
-                                    </td>
-                                    <td>@item.NumberOfDOCS</td>
-                                    <td>@item.Shipment</td>
-                                    <td>@item.RecipientName</td>
-                                    <td>@item.RecipientAddress</td>
-                                    <td>@item.RecipientPhone</td>
-                                    <td>@item.Notes</td>
-                                </tr>
+                                    foreach (var item in Model) {
+                                        <tr>
+                                            <td>@(x++)</td>
+                                            <td>@item.Id</td>
+                                            <td>@item.CustomerConfirm</td>
+                                            <th>@item.TotalWeight</th>
+                                            <th>@item.SenderName</th>
+                                            <th>@item.PhoneSender</th>
+                                            <td data-order='@String.Format("{0:yyyy MM dd HH:mm:ss}", item.CreateDate)'>
+                                                @String.Format("{0:dd MMM yyyy HH:mm:ss}", item.CreateDate)<br />
+                                            </td>
+                                            <td data-order='@String.Format("{0:yyyy MM dd HH:mm:ss}", item.PickupDate)'>
+                                                @String.Format("{0:dd MMM yyyy HH:mm:ss}", item.PickupDate)<br />
+                                            </td>
+                                            <td>@item.Status</td>
+                                            <td data-order='@String.Format("{0:yyyy MM dd HH:mm:ss}", item.ModifyDate)'>
+                                                @String.Format("{0:dd MMM yyyy HH:mm:ss}", item.ModifyDate)<br />
+                                            </td>
+                                            <td>@item.NumberOfDOCS</td>
+                                            <td>@item.Shipment</td>
+                                            <td>@item.RecipientName</td>
+                                            <td>@item.RecipientAddress</td>
+                                            <td>@item.RecipientPhone</td>
+                                            <td>@item.Notes</td>
+                                            <td>
+                                                <a class="btn btn-primary" href="/Admin/Order/Edit/@item.Id">Edit</a>
+                                            </td>
+                                        </tr>
                                     }
                                 }
                             </tbody>
@@ -100,13 +101,12 @@
                                     <th>Address</th>
                                     <th>Phone ##</th>
                                     <th>Notes</th>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                         </table>
-
                     </div>
                     <!-- /.card-body -->
-
                 </div>
                 <!-- /.card -->
             </div>

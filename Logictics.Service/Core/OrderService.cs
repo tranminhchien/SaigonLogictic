@@ -7,25 +7,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Logictics.Service.Core
-{
-    public interface IOrderService
-    {
+namespace Logictics.Service.Core {
+
+    public interface IOrderService {
+
         List<OrderViewModel> GetListActive();
 
         void CreateOrder(OrderCreateModel data);
+
+        OrderEditViewModel GetDetail(string id);
     }
 
-    public class OrderService : IOrderService
-    {
+    public class OrderService : IOrderService {
         private IOrderRepo orderRepo;
         private IStoreRepo storeRepo;
         private ICategoryProductRepo categoryProductRepo;
         private IUserRepo userRepo;
         private IOrderDetailRepo orderDetailRepo;
 
-        public OrderService(IOrderRepo orderRepo, IStoreRepo storeRepo, ICategoryProductRepo categoryProductRepo, IUserRepo userRepo, IOrderDetailRepo orderDetailRepo)
-        {
+        public OrderService(IOrderRepo orderRepo, IStoreRepo storeRepo, ICategoryProductRepo categoryProductRepo, IUserRepo userRepo, IOrderDetailRepo orderDetailRepo) {
             this.orderRepo = orderRepo;
             this.storeRepo = storeRepo;
             this.categoryProductRepo = categoryProductRepo;
@@ -33,8 +33,7 @@ namespace Logictics.Service.Core
             this.orderDetailRepo = orderDetailRepo;
         }
 
-        public List<OrderViewModel> GetListActive()
-        {
+        public List<OrderViewModel> GetListActive() {
             var result = new List<OrderViewModel>();
             var listOrder = orderRepo.GetAll().ToList();
             var listCategoryProduct = categoryProductRepo.GetAll().ToList();
@@ -42,8 +41,7 @@ namespace Logictics.Service.Core
             var listUser = userRepo.GetAll().ToList();
             var listOrderDetail = orderDetailRepo.GetAll().ToList();
 
-            foreach(var item in listOrder)
-            {
+            foreach (var item in listOrder) {
                 //var category = listCategoryProduct.FirstOrDefault(c => c.Id == item.CategoryId);
                 var store = listStore.FirstOrDefault(s => s.Id == item.StoreId);
                 var sender = listUser.FirstOrDefault(u => u.Id == item.SenderId);
@@ -60,8 +58,7 @@ namespace Logictics.Service.Core
             return result;
         }
 
-        public void CreateOrder(OrderCreateModel data)
-        {
+        public void CreateOrder(OrderCreateModel data) {
             OrderTbl order = new OrderTbl();
             order.SenderId = data.SenderId;
             order.RecipientId = data.RecipientId;
@@ -77,10 +74,8 @@ namespace Logictics.Service.Core
             orderRepo.Create(order);
 
             var listOrderdetail = new List<OrderDetailTbl>();
-            if(data.listOrdertail != null)
-            {
-                foreach( var item in data.listOrdertail)
-                {
+            if (data.listOrdertail != null) {
+                foreach (var item in data.listOrdertail) {
                     var orderdetail = new OrderDetailTbl();
                     orderdetail.CreateDate = TimestampStaicClass.ConvertTotimestamp(DateTime.UtcNow);
                     orderdetail.ModifyDate = TimestampStaicClass.ConvertTotimestamp(DateTime.UtcNow);
@@ -98,6 +93,26 @@ namespace Logictics.Service.Core
             }
 
             orderDetailRepo.CreateMulti(listOrderdetail);
+        }
+
+        public OrderEditViewModel GetDetail(string id) {
+            try {
+                var order = orderRepo.Get(id);
+                var ordertail = orderDetailRepo.GetListByOrderId(id).ToList();
+                var store = storeRepo.GetAll().FirstOrDefault(c => c.Id == order.StoreId);
+                var listuser = userRepo.GetAll().ToList();
+
+                var result = new OrderEditViewModel();
+                result.orderTbl = order;
+                result.store = store;
+                result.listDetailTbl = ordertail;
+                result.Sender = listuser.FirstOrDefault(c => c.Id == order.SenderId);
+                result.Recipient = listuser.FirstOrDefault(c => c.Id == order.RecipientId);
+
+                return result;
+            } catch (Exception e) {
+                return null;
+            }
         }
     }
 }

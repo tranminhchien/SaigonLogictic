@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Logictics.Service.ViewModel.OrderEditViewModel
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
@@ -25,6 +26,10 @@
             width: 85px;
             margin-left: 30px;
             padding: 0px 10px;
+        }
+
+        .btnAddOrder {
+            padding: 0px 15px;
         }
 
         .orderInput div {
@@ -102,7 +107,7 @@
                         </div>
                     </div>
                     <div class="card-body d-flex productDetailInput">
-                        @Html.DropDownList("ListCategory", null, "Chưa chọn", new { @class = "form-control form-control-sm selectpicker", @data_live_search = "true", @data_size = "5" })
+                        @Html.DropDownList("ListCategory", null, null, new { @class = "form-control form-control-sm selectpicker", @data_live_search = "true", @data_size = "5" })
                         <input type="text" placeholder="Product Code" id="productCode" name="productCode" value="" class="form-control form-control-sm" />
                         <input type="text" placeholder="Description" id="description" name="description" value="" class="form-control form-control-sm" />
                         <input type="number" placeholder="Quality" id="quality" name="quality" value="" class="form-control form-control-sm smallInput" />
@@ -129,25 +134,41 @@
                             <tbody>
                             </tbody>
                         </table>
-
                     </div>
 
                     <div class="card-body d-flex orderInput">
                         <div>
                             <div>Store</div>
-                            @Html.DropDownList("ListStore", null, "Chưa chọn", new { @class = "form-control form-control-sm selectpicker largeInput", @data_live_search = "true", @data_size = "5" })
+                            @Html.DropDownList("ListStore", null, null, new { @class = "form-control form-control-sm selectpicker largeInput", @data_live_search = "true", @data_size = "5" })
                         </div>
                         <div>
                             <div>Total Weight</div>
-                            <input type="text" placeholder="Total Weight" id="totalWeight" name="totalWeight" value="" class="form-control form-control-sm smallInput" />
+                            <input type="number" placeholder="Total Weight" id="totalWeight" name="totalWeight" value="0" class="form-control form-control-sm smallInput" disabled />
                         </div>
                         <div>
-                            <div>Customer Phone</div>
-                            <input type="text" placeholder="Customer Phone" id="customerPHone" name="customerPHone" value="" class="form-control form-control-sm mediumInput" />
+                            <div>Shipment</div>
+                            <input type="text" placeholder="Shipment" id="shipment" name="shipment" value="" class="form-control form-control-sm mediumInput" />
                         </div>
-                        <button class="btnAddOrder btn btn-custom-violet" id="btnAddOrderDetail">
-                            Create Order
-                        </button>
+                        <div>
+                            <div>Sender Name</div>
+                            @Html.DropDownList("ListSender", null, null, new { @class = "form-control form-control-sm selectpicker largeInput", @data_live_search = "true", @data_size = "5" })
+                        </div>
+                        <div>
+                            <div>Recipient Name</div>
+                            @Html.DropDownList("ListRecipient", null, null, new { @class = "form-control form-control-sm selectpicker largeInput", @data_live_search = "true", @data_size = "5" })
+                        </div>
+                    </div>
+                    <div class="card-body d-flex orderInput">
+                        <div>
+                            <div>Note</div>
+                            <textarea id="note" name="note" rows="4" cols="50"></textarea>
+                        </div>
+                        <div>
+                            <div>&nbsp;</div>
+                            <button class="btnAddOrder btn btn-custom-violet" id="btnAddOrder">
+                                Create Order
+                            </button>
+                        </div>
                     </div>
 
                     <!-- /.card-body -->
@@ -159,3 +180,89 @@
     </section>
     <!-- /.content -->
 </div>
+
+@section extendScripts{
+
+    <script>
+
+        let listOrderDetail = [];
+        var table = $('#example1').DataTable({
+            columns: [
+                {
+                    data: null, "render": function (data, type, full, meta) {
+                        return meta.row;
+                    }
+                },
+                { data: null, render: 'category' },
+                { data: null, render: 'productCode' },
+                { data: null, render: 'description' },
+                { data: null, render: 'quality' },
+                { data: null, render: 'weight' },
+                { data: null, render: 'price' }
+            ]
+        });
+
+        //TODO add function remove kanjidetail
+        $("#btnAddOrderDetail").click(function () {
+            var categoryId = $("#ListCategory").val();
+            var category = $("#ListCategory option:selected").text();
+            var productCode = $("#productCode").val();
+            var description = $("#description").val();
+            var quality = $("#quality").val();
+            var weight = $("#weight").val();
+            var price = $("#price").val();
+
+            var data = {
+                category,
+                productCode,
+                description,
+                quality,
+                weight,
+                price,
+                categoryId
+            }
+
+            var oldTotal = $("#totalWeight").val();
+            console.log(oldTotal);
+            if (oldTotal == undefined || oldTotal == "" || oldTotal == null) {
+                oldTotal = 0;
+            }
+
+            var newTotal = parseInt(oldTotal) + parseInt(weight) * parseInt(quality);
+            $("#totalWeight").val(newTotal)
+            console.log($("#totalWeight").val());
+            table.row.add(data);
+            table.draw();
+            listOrderDetail.push(data);
+        });
+
+        $("#btnAddOrder").click(function () {
+
+            var StoreId = $("#ListStore").val();
+            var SenderId = $("#ListSender").val();
+            var RecipientId = $("#ListRecipient").val();
+            var Shipment = $("#totalWeight").val();
+            var TotalWeight = $("#shipment").val();
+            var Note = $("#note").val();
+
+            $.ajax({
+                url: "/Admin/Order/Create",
+                type: "POST",
+                data: {
+                    StoreId: StoreId,
+                    SenderId: SenderId,
+                    RecipientId: RecipientId,
+                    Shipment: Shipment,
+                    TotalWeight: TotalWeight,
+                    Note: Note,
+                    listOrdertail: listOrderDetail
+
+                },
+                dataType: "JSON",
+                success: function (response) {
+                    window.location.href = "/Admin/Order";
+                }
+            });
+        });
+    </script>
+}

@@ -65,7 +65,7 @@ namespace Logictics.Service.Core {
             order.StoreId = data.StoreId;
             order.Notes = data.Note;
             order.TotalWeight = data.TotalWeight ?? 0;
-            order.Status = "ACTIVE";
+            order.Status = "New";
             order.Shipment = data.Shipment;
             order.CreateDate = TimestampStaicClass.ConvertTotimestamp(DateTime.UtcNow);
             order.ModifyDate = TimestampStaicClass.ConvertTotimestamp(DateTime.UtcNow);
@@ -79,15 +79,15 @@ namespace Logictics.Service.Core {
                     var orderdetail = new OrderDetailTbl();
                     orderdetail.CreateDate = TimestampStaicClass.ConvertTotimestamp(DateTime.UtcNow);
                     orderdetail.ModifyDate = TimestampStaicClass.ConvertTotimestamp(DateTime.UtcNow);
-                    orderdetail.Status = "ACTIVE";
-                    orderdetail.Description = item.description;
-                    orderdetail.ProductCategoryId = item.categoryId;
+                    orderdetail.Status = "New";
+                    orderdetail.Description = item.Description;
+                    orderdetail.ProductCategoryId = item.ProductCategoryId;
                     orderdetail.Id = Guid.NewGuid().ToString();
                     orderdetail.OrderId = order.Id;
-                    orderdetail.Price = item.price;
-                    orderdetail.ProductCode = item.productCode;
-                    orderdetail.Quality = item.quality;
-                    orderdetail.Weight = item.quality;
+                    orderdetail.Price = item.Price;
+                    orderdetail.ProductCode = item.ProductCode;
+                    orderdetail.Quality = item.Quality;
+                    orderdetail.Weight = item.Weight;
                     listOrderdetail.Add(orderdetail);
                 }
             }

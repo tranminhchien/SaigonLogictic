@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Logictics.Entity.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,7 +14,7 @@ namespace Logictics.Service.ViewModel
         public int? TotalWeight { get; set; }
         public string Note { get; set; } = "";
         public string Shipment { get; set; } = "";
-        public List<OrderdetailCreateModel> listOrdertail { get; set; }
+        public List<OrderDetailTbl> listOrdertail { get; set; }
 
     }
 }

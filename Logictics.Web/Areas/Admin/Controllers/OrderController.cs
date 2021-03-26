@@ -57,7 +57,6 @@ namespace Logictics.Web.Areas.Admin.Controllers {
             ViewBag.ListStore = new SelectList(listStore, "Id", "Name");
             ViewBag.ListSender = new SelectList(listUser, "Id", "UserName");
             ViewBag.ListRecipient = new SelectList(listUser, "Id", "UserName");
-
             return View();
         }
 
@@ -79,15 +78,17 @@ namespace Logictics.Web.Areas.Admin.Controllers {
                 if (result == null) {
                     return Redirect("404NotFound");
                 }
+                var listUser = userRepo.GetAll().ToList();
                 var listCategory = categoryProductRepo.GetAll().ToList();
                 var listStore = storeRepo.GetAll().ToList();
-                var listUser = userRepo.GetAll().ToList();
 
                 ViewBag.ListCategory = new SelectList(listCategory, "Id", "Name");
                 ViewBag.ListStore = new SelectList(listStore, "Id", "Name", result.store != null ? result.store.Id : "");
                 ViewBag.ListSender = new SelectList(listUser, "Id", "UserName", result.Sender != null ? result.Sender.Id : "");
                 ViewBag.ListRecipient = new SelectList(listUser, "Id", "UserName", result.Recipient != null ? result.Recipient.Id : "");
+                ViewBag.ListStatus = new ListSelectOptionModel().CreateListSelectStatusOrder(result.orderTbl.Status);
 
+                result.listCategoryTbl = listCategory;
                 return View(result);
             } catch (Exception e) {
                 return View("404NotFound");

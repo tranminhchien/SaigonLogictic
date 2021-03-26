@@ -121,19 +121,20 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>OrderDetailId</th>
+                                    <th>CategoryId</th>
                                     <th>Category</th>
                                     <th>ProductCode</th>
                                     <th>Description</th>
                                     <th>Quality</th>
                                     <th>Weight</th>
                                     <th>Price</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                             </tbody>
                         </table>
-
                     </div>
 
                     <div class="card-body d-flex orderInput">
@@ -143,7 +144,7 @@
                         </div>
                         <div>
                             <div>Total Weight</div>
-                            <input type="number" placeholder="Total Weight" id="totalWeight" name="totalWeight" value="0" class="form-control form-control-sm smallInput" disabled/>
+                            <input type="number" placeholder="Total Weight" id="totalWeight" name="totalWeight" value="0" class="form-control form-control-sm smallInput" disabled />
                         </div>
                         <div>
                             <div>Shipment</div>
@@ -157,8 +158,6 @@
                             <div>Recipient Name</div>
                             @Html.DropDownList("ListRecipient", null, null, new { @class = "form-control form-control-sm selectpicker largeInput", @data_live_search = "true", @data_size = "5" })
                         </div>
-                       
-                        
                     </div>
                     <div class="card-body d-flex orderInput">
                         <div>
@@ -185,87 +184,114 @@
 
 @section extendScripts{
 
-<script>
+    <script>
 
-    let listOrderDetail = [];
-    var table = $('#example1').DataTable({
-        columns: [
-            {
-                data: null, "render": function (data, type, full, meta) {
-                    return meta.row;
+        var table = $('#example1').DataTable({
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                },
+                {
+                    "targets": [1],
+                    "visible": false
                 }
-            },
-            { data: null, render: 'category' },
-            { data: null, render: 'productCode' },
-            { data: null, render: 'description' },
-            { data: null, render: 'quality' },
-            { data: null, render: 'weight' },
-            { data: null, render: 'price' }
-        ]
-    });
-
-    //TODO add function remove kanjidetail
-    $("#btnAddOrderDetail").click(function () {
-        var categoryId = $("#ListCategory").val();
-        var category = $("#ListCategory option:selected").text();
-        var productCode = $("#productCode").val();
-        var description = $("#description").val();
-        var quality = $("#quality").val();
-        var weight = $("#weight").val();
-        var price = $("#price").val();
-
-        var data = {
-            category,
-            productCode,
-            description,
-            quality,
-            weight,
-            price,
-            categoryId
-        }
-
-        var oldTotal = $("#totalWeight").val();
-        console.log(oldTotal);
-        if (oldTotal == undefined || oldTotal == "" || oldTotal == null) {
-            oldTotal = 0;
-        }
-
-        var newTotal = parseInt(oldTotal) + parseInt(weight) * parseInt(quality);
-        $("#totalWeight").val(newTotal)
-        console.log($("#totalWeight").val());
-        table.row.add(data);
-        table.draw();
-        listOrderDetail.push(data);
-    });
-
-    $("#btnAddOrder").click(function () {
-
-        var StoreId = $("#ListStore").val();
-        var SenderId = $("#ListSender").val();
-        var RecipientId = $("#ListRecipient").val();
-        var Shipment = $("#totalWeight").val();
-        var TotalWeight = $("#shipment").val();
-        var Note = $("#note").val();
-
-        $.ajax({
-            url: "/Admin/Order/Create",
-            type: "POST",
-            data: {
-                StoreId: StoreId,
-                SenderId: SenderId,
-                RecipientId: RecipientId,
-                Shipment: Shipment,
-                TotalWeight: TotalWeight,
-                Note: Note,
-                listOrdertail: listOrderDetail
-                
-            },
-            dataType: "JSON",
-            success: function (response) {
-                window.location.href = "/Admin/Order";
-            }
+            ],
+            "columns": [
+                { data: null, "render": 'Id' },
+                { data: null, "reder": 'ProductCategoryId' },
+                { data: null, "render": 'Category' },
+                { data: null, "render": 'ProductCode' },
+                { data: null, "render": 'Description' },
+                { data: null, "render": 'Quality' },
+                { data: null, "render": 'Weight' },
+                { data: null, "render": 'Price' },
+                {
+                    data: null, "render": function (data, type, full, meta) {
+                        return "<button type=\"button\"><div class=\"deleteOrderdetail\">Remove</button>";
+                    }
+                }
+            ]
         });
-    });
 
-</script>
+        //TODO add function remove kanjidetail
+        $("#btnAddOrderDetail").click(function () {
+            var ProductCategoryId = $("#ListCategory").val();
+            var Category = $("#ListCategory option:selected").text();
+            var ProductCode = $("#productCode").val();
+            var Description = $("#description").val();
+            var Quality = $("#quality").val();
+            var Weight = $("#weight").val();
+            var Price = $("#price").val();
+            var Id = '';
+
+            var data = {
+                Id,
+                ProductCategoryId,
+                Category,
+                ProductCode,
+                Description,
+                Quality,
+                Weight,
+                Price
+            }
+
+            var oldTotal = $("#totalWeight").val();
+            if (oldTotal == undefined || oldTotal == "" || oldTotal == null) {
+                oldTotal = 0;
+            }
+
+            var newTotal = parseInt(oldTotal) + parseInt(Weight) * parseInt(Quality);
+            $("#totalWeight").val(newTotal);
+            table.row.add(data);
+            table.draw();
+        });
+
+        $("#btnAddOrder").click(function () {
+
+            var StoreId = $("#ListStore").val();
+            var SenderId = $("#ListSender").val();
+            var RecipientId = $("#ListRecipient").val();
+            var Shipment = $("#totalWeight").val();
+            var TotalWeight = $("#shipment").val();
+            var Note = $("#note").val();
+            var listOrdertail = table.data().toArray();
+            $.ajax({
+                url: "/Admin/Order/Create",
+                type: "POST",
+                data: {
+                    StoreId: StoreId,
+                    SenderId: SenderId,
+                    RecipientId: RecipientId,
+                    Shipment: Shipment,
+                    TotalWeight: TotalWeight,
+                    Note: Note,
+                    listOrdertail: listOrdertail
+
+                },
+                dataType: "JSON",
+                success: function (response) {
+                    window.location.href = "/Admin/Order";
+                }
+            });
+        });
+
+        $('#example1 tbody').on('click', 'div.deleteOrderdetail', function () {
+            var rowIndex = $(this).parents('tr')[0]['rowIndex'];
+            var Weight = table.data()[rowIndex - 1]['Weight'];
+            var Quality = table.data()[rowIndex - 1]['Quality'];
+
+            var oldTotal = $("#totalWeight").val();
+            if (oldTotal == undefined || oldTotal == "" || oldTotal == null) {
+                oldTotal = 0;
+            }
+
+            var newTotal = parseInt(oldTotal) - parseInt(Weight) * parseInt(Quality);
+            $("#totalWeight").val(newTotal);
+            table
+                .row(rowIndex - 1)
+                .remove()
+                .draw();
+        });
+    </script>
 }

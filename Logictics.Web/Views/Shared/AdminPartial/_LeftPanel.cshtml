@@ -10,7 +10,7 @@
     <div class="sidebar">
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul id="leftPanel" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li></li>
                 <li class="nav-header">QUẢN LÝ</li>
                 <li class="nav-item has-treeview">
@@ -18,44 +18,18 @@
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Người dùng
-                          
                         </p>
                     </a>
                 </li>
-               
-                <li class="nav-item has-treeview menu-open">
-                    <a class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+
+                <li class="nav-item has-treeview">
+                    <a href="~/Admin/Order" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
-                            Orders
-                            <i class="right fas fa-angle-left"></i>
+                            Order
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item has-treeview">
-                            <a href="~/Admin/Order" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>
-                                    List
-                                   
-                                </p>
-                            </a>
-                        </li>
-                       
-                        <li class="nav-item">
-                            <a href="~/Admin/Order/Create" class="nav-link">
-                                <i class="nav-icon far fa-smile"></i>
-                                <p>
-                                   New
-                                </p>
-                            </a>
-                        </li>
-                       
-                    </ul>
                 </li>
-              
-
-
                 <li class="nav-header"></li>
             </ul>
         </nav>

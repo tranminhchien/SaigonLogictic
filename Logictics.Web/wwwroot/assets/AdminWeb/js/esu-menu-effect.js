@@ -5,7 +5,7 @@
 
 let pathname = window.location.pathname;
 let pathNameArray = pathname.split("/");
-let currentController = pathNameArray[1].toLowerCase();
+let currentController = pathNameArray[2].toLowerCase();
 //alert(currentController);
 
 // for sidebar menu entirely but not cover treeview
@@ -18,13 +18,13 @@ $('ul.nav-sidebar a').filter(function () {
 // for treeview
 $('ul.nav-sidebar a').filter(function () {
     let hrefController = this.href.split("/");
-    let selectedController = ("" + hrefController[3]).toLowerCase();
+    let selectedController = ("" + hrefController[4]).toLowerCase();
     return selectedController == currentController;
 }).parentsUntil(".nav-sidebar > .nav-link").addClass('active');
 
 // for sidebar menu entirely but not cover treeview
 $('ul.nav-sidebar a').filter(function () {
     let hrefController = this.href.split("/");
-    let selectedController = ("" + hrefController[3]).toLowerCase();
+    let selectedController = ("" + hrefController[4]).toLowerCase();
     return selectedController == currentController;
 }).addClass('active');

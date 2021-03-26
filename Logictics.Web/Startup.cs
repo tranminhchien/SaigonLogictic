@@ -151,6 +151,7 @@ namespace Logictics.Web
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IOrderDetailService, OrderDetailService>();
+            services.AddScoped<IClientService, ClientService>();
      
             // common di
             services.AddScoped<IDatetimeUtil, DatetimeUtil>();

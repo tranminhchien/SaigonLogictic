@@ -15,5 +15,7 @@ namespace Logictics.Service.ViewModel {
         public UserAdmin Recipient { get; set; }
 
         public StoreTbl store { get; set; }
+
+        public List<CategoryProductTbl> listCategoryTbl { get; set; }
     }
 }

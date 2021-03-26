@@ -106,6 +106,7 @@
                             <a href="~/@(Role.Admin)/Order/Index">Quay Về</a>
                         </div>
                     </div>
+
                     <div class="card-body d-flex productDetailInput">
                         @Html.DropDownList("ListCategory", null, null, new { @class = "form-control form-control-sm selectpicker", @data_live_search = "true", @data_size = "5" })
                         <input type="text" placeholder="Product Code" id="productCode" name="productCode" value="" class="form-control form-control-sm" />
@@ -122,16 +123,37 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>OrderDetailId</th>
+                                    <th>CategoryId</th>
                                     <th>Category</th>
                                     <th>ProductCode</th>
                                     <th>Description</th>
                                     <th>Quality</th>
                                     <th>Weight</th>
                                     <th>Price</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+
+                                @*@{
+                                        var x =1;
+                                        foreach (var item in Model.listDetailTbl) {
+                                            <tr>
+                                                <td>@(x++)</td>
+                                                <td>@Model.listCategoryTbl.FirstOrDefault(c => c.Id == item.ProductCategoryId).Name</td>
+                                                <td>@item.ProductCode</td>
+                                                <td>@item.Description</td>
+                                                <td>@item.Quality</td>
+                                                <td>@item.Weight</td>
+                                                <td>@item.Price</td>
+                                                <td>
+                                                    <div onclick="DeleteDetailOrder('@item.Id')" class="btn btn-warning">Edit</div>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    }*@
                             </tbody>
                         </table>
                     </div>
@@ -143,11 +165,11 @@
                         </div>
                         <div>
                             <div>Total Weight</div>
-                            <input type="number" placeholder="Total Weight" id="totalWeight" name="totalWeight" value="0" class="form-control form-control-sm smallInput" disabled />
+                            <input type="number" placeholder="Total Weight" id="totalWeight" name="totalWeight" value="@Model.orderTbl.TotalWeight" class="form-control form-control-sm smallInput" disabled />
                         </div>
                         <div>
                             <div>Shipment</div>
-                            <input type="text" placeholder="Shipment" id="shipment" name="shipment" value="" class="form-control form-control-sm mediumInput" />
+                            <input type="text" placeholder="Shipment" id="shipment" name="shipment" value="@Model.orderTbl.Shipment" class="form-control form-control-sm mediumInput" />
                         </div>
                         <div>
                             <div>Sender Name</div>
@@ -158,10 +180,11 @@
                             @Html.DropDownList("ListRecipient", null, null, new { @class = "form-control form-control-sm selectpicker largeInput", @data_live_search = "true", @data_size = "5" })
                         </div>
                     </div>
+
                     <div class="card-body d-flex orderInput">
                         <div>
                             <div>Note</div>
-                            <textarea id="note" name="note" rows="4" cols="50"></textarea>
+                            <textarea id="note" name="note" rows="4" cols="50">@Model.orderTbl.Notes</textarea>
                         </div>
                         <div>
                             <div>&nbsp;</div>
@@ -171,6 +194,9 @@
                         </div>
                     </div>
 
+                    <div class="card-body">
+                        @Html.DropDownList("ListStatus", null, null, new { @class = "form-control form-control-sm selectpicker" })
+                    </div>
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->
@@ -186,40 +212,59 @@
     <script>
 
         let listOrderDetail = [];
+
+        //$(function () {
+        //    initEsuDatatables($('#example1'), 10, "desc", 1, true, true);
+        //});
+
         var table = $('#example1').DataTable({
-            columns: [
+            "columnDefs": [
+                {
+                    "targets": [0],
+                    "visible": false,
+                },
+                {
+                    "targets": [1],
+                    "visible": false
+                }
+            ],
+            "columns": [
+                { data: null, "render": 'Id' },
+                { data: null, "reder": 'ProductCategoryId' },
+                { data: null, "render": 'Category' },
+                { data: null, "render": 'ProductCode' },
+                { data: null, "render": 'Description' },
+                { data: null, "render": 'Quality' },
+                { data: null, "render": 'Weight' },
+                { data: null, "render": 'Price' },
                 {
                     data: null, "render": function (data, type, full, meta) {
-                        return meta.row;
+                        return "<button type=\"button\"><div class=\"deleteOrderdetail\">Remove</button>";
                     }
-                },
-                { data: null, render: 'category' },
-                { data: null, render: 'productCode' },
-                { data: null, render: 'description' },
-                { data: null, render: 'quality' },
-                { data: null, render: 'weight' },
-                { data: null, render: 'price' }
+                }
             ]
         });
 
         //TODO add function remove kanjidetail
         $("#btnAddOrderDetail").click(function () {
-            var categoryId = $("#ListCategory").val();
-            var category = $("#ListCategory option:selected").text();
-            var productCode = $("#productCode").val();
-            var description = $("#description").val();
-            var quality = $("#quality").val();
-            var weight = $("#weight").val();
-            var price = $("#price").val();
+            var ProductCategoryId = $("#ListCategory").val();
+            var Category = $("#ListCategory option:selected").text();
+            var ProductCode = $("#productCode").val();
+            var Description = $("#description").val();
+            var Quality = $("#quality").val();
+            var Weight = $("#weight").val();
+            var Price = $("#price").val();
+            var Id = '';
 
             var data = {
-                category,
-                productCode,
-                description,
-                quality,
-                weight,
-                price,
-                categoryId
+                Id,
+                ProductCategoryId,
+                Category,
+                ProductCode,
+                Description,
+                Quality,
+                Weight,
+                Price
             }
 
             var oldTotal = $("#totalWeight").val();
@@ -263,6 +308,14 @@
                     window.location.href = "/Admin/Order";
                 }
             });
+        });
+
+        //delete row datatable
+        $('#example1 tbody').on('click', 'div.deleteOrderdetail', function () {
+            table
+                .row($(this).parents('tr'))
+                .remove()
+                .draw();
         });
     </script>
 }

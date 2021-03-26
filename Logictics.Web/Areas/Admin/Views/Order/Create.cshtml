@@ -237,14 +237,12 @@
             }
 
             var oldTotal = $("#totalWeight").val();
-            console.log(oldTotal);
             if (oldTotal == undefined || oldTotal == "" || oldTotal == null) {
                 oldTotal = 0;
             }
 
-            var newTotal = parseInt(oldTotal) + parseInt(weight) * parseInt(quality);
-            $("#totalWeight").val(newTotal)
-            console.log($("#totalWeight").val());
+            var newTotal = parseInt(oldTotal) + parseInt(Weight) * parseInt(Quality);
+            $("#totalWeight").val(newTotal);
             table.row.add(data);
             table.draw();
         });
@@ -279,8 +277,19 @@
         });
 
         $('#example1 tbody').on('click', 'div.deleteOrderdetail', function () {
+            var rowIndex = $(this).parents('tr')[0]['rowIndex'];
+            var Weight = table.data()[rowIndex - 1]['Weight'];
+            var Quality = table.data()[rowIndex - 1]['Quality'];
+
+            var oldTotal = $("#totalWeight").val();
+            if (oldTotal == undefined || oldTotal == "" || oldTotal == null) {
+                oldTotal = 0;
+            }
+
+            var newTotal = parseInt(oldTotal) - parseInt(Weight) * parseInt(Quality);
+            $("#totalWeight").val(newTotal);
             table
-                .row($(this).parents('tr'))
+                .row(rowIndex - 1)
                 .remove()
                 .draw();
         });

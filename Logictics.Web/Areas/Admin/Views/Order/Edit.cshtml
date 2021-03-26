@@ -210,13 +210,6 @@
 @section extendScripts{
 
     <script>
-
-        let listOrderDetail = [];
-
-        //$(function () {
-        //    initEsuDatatables($('#example1'), 10, "desc", 1, true, true);
-        //});
-
         var table = $('#example1').DataTable({
             "columnDefs": [
                 {
@@ -273,9 +266,8 @@
                 oldTotal = 0;
             }
 
-            var newTotal = parseInt(oldTotal) + parseInt(weight) * parseInt(quality);
+            var newTotal = parseInt(oldTotal) + parseInt(Weight) * parseInt(Quality);
             $("#totalWeight").val(newTotal)
-            console.log($("#totalWeight").val());
             table.row.add(data);
             table.draw();
             listOrderDetail.push(data);
@@ -312,8 +304,19 @@
 
         //delete row datatable
         $('#example1 tbody').on('click', 'div.deleteOrderdetail', function () {
+            var rowIndex = $(this).parents('tr')[0]['rowIndex'];
+            var Weight = table.data()[rowIndex - 1]['Weight'];
+            var Quality = table.data()[rowIndex - 1]['Quality'];
+
+            var oldTotal = $("#totalWeight").val();
+            if (oldTotal == undefined || oldTotal == "" || oldTotal == null) {
+                oldTotal = 0;
+            }
+
+            var newTotal = parseInt(oldTotal) - parseInt(Weight) * parseInt(Quality);
+            $("#totalWeight").val(newTotal);
             table
-                .row($(this).parents('tr'))
+                .row(rowIndex - 1)
                 .remove()
                 .draw();
         });

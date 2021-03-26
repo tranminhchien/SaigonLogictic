@@ -1,0 +1,18 @@
+﻿@model List<Logictics.Service.ViewModel.OrderClientReponse>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Search</title>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            @item.orderID
+        }
+    }
+</head>
+<body>
+</body>
+</html>

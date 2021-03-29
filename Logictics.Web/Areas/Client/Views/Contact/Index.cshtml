@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="slider bg-navy-blue bg-fixed pos-rel breadcrumbs-page">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"><i class="icofont-home"></i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Liên Hệ</li>
+                </ol>
+            </nav>
+
+            <h1>Liên Hệ</h1>
+            <div class="breadcrumbs-description">
+                SG EXPRESS VẬN CHUYỂN HÀNG HÓA VÀ KIỀU HỐI
+            </div>
+        </div>
+    </div>
+
+    <main id="body-content">
+
+     
+        <!-- Contact Details Start -->
+        <section class="wide-tb-100 pos-rel">
+            <div class="container">
+                <div class="contact-map-bg option">
+                    <img src="/client/assets/images/map-bg.png" alt="">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2 class="h2-md mb-4 fw-7 txt-blue">Địa Chỉ</h2>
+                        <!-- Contact Detail Left -->
+                        <div class="contact-detail-shadow no-shadow mb-5 wow fadeInRight" data-wow-duration="0" data-wow-delay="0s" style="visibility: visible; animation-delay: 0s; animation-name: fadeInRight;">
+                            <h4>Mỹ</h4>
+                            <div class="d-flex align-items-start items">
+                                <i class="icofont-google-map"></i> <span>
+    13020 ButternutlnRivera beach Fl 33410
+</span>
+                            </div>
+                            <div class="d-flex align-items-start items">
+                                <i class="icofont-phone"></i> <span>832 821 0282</span>
+                            </div>
+                            <div class="text-nowrap d-flex align-items-start items">
+                                <i class="icofont-email"></i> <a href="#">germany@logzee.com</a>
+                            </div>
+                        </div>
+                        <!-- Contact Detail Left -->
+                        <!-- Contact Detail Left -->
+                        <div class="contact-detail-shadow no-shadow wow fadeInRight" data-wow-duration="0" data-wow-delay="0s" style="visibility: visible; animation-delay: 0s; animation-name: fadeInRight;">
+                            <h4>Sai Gòn</h4>
+                            <div class="d-flex align-items-start items">
+                                <i class="icofont-google-map"></i> <span>
+    157 Nguyễn Thái Bình, P.4, Q.Tân Bình
+</span>
+                            </div>
+                            <div class="d-flex align-items-start items">
+                                <i class="icofont-phone"></i> <span>091 596 1313</span>
+                            </div>
+                            <div class="text-nowrap d-flex align-items-start items">
+                                <i class="icofont-email"></i> <a href="#">spain@logzee.com</a>
+                            </div>
+                        </div>
+                        <!-- Contact Detail Left -->
+
+                    </div>
+
+
+                    <div class="col-md-8 col-sm-12">
+                        <h2 class="h2-md mb-4 fw-7 txt-blue">Xin Chào! Liên hệ với chúng tôi</h2>
+                        <div class="">
+
+                            <div class="free-quote-form contact-page-option wow fadeInLeft" data-wow-duration="0" data-wow-delay="0s" style="visibility: visible; animation-delay: 0s; animation-name: fadeInLeft;">
+                                <form action="contact_process.php" method="post" id="contactoption" novalidate="novalidate" class="rounded-field">
+                                    <div class="form-row mb-4">
+                                        <div class="col">
+                                            <input type="text" name="name" class="form-control" placeholder="Họ Tên">
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" name="email" class="form-control" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="form-row mb-4">
+                                        <div class="col">
+                                            <select title="Please choose a package" required="" name="Transport_Package" id="Transport_Package" class="form-control wide" aria-required="true" aria-invalid="false" style="display: none;">
+                                                <option value="">Loại Dịch Vụ</option>
+                                                <option value="Type 1">Type 1</option>
+                                                <option value="Type 2">Type 2</option>
+                                                <option value="Type 3">Type 3</option>
+                                                <option value="Type 4">Type 4</option>
+                                            </select><div class="nice-select form-control wide" tabindex="0"><span class="current">Loại Dịch Vụ</span><ul class="list"><li data-value="" class="option selected">Transport Type</li><li data-value="Type 1" class="option">Type 1</li><li data-value="Type 2" class="option">Type 2</li><li data-value="Type 3" class="option">Type 3</li><li data-value="Type 4" class="option">Type 4</li></ul></div>
+                                        </div>
+                                        <div class="col">
+                                            <select title="Please choose a package" required="" name="Freight_Package" id="Freight_Package" class="form-control wide" aria-required="true" aria-invalid="false" style="display: none;">
+                                                <option value="">Loại Hàng Hóa</option>
+                                                <option value="Type 1">Type 1</option>
+                                                <option value="Type 2">Type 2</option>
+                                                <option value="Type 3">Type 3</option>
+                                                <option value="Type 4">Type 4</option>
+                                            </select><div class="nice-select form-control wide" tabindex="0"><span class="current">Loại Hàng Hóa</span><ul class="list"><li data-value="" class="option selected">Type of freight</li><li data-value="Type 1" class="option">Type 1</li><li data-value="Type 2" class="option">Type 2</li><li data-value="Type 3" class="option">Type 3</li><li data-value="Type 4" class="option">Type 4</li></ul></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row mb-4">
+                                        <div class="col">
+                                            <textarea name="cment" rows="7" placeholder="Nội Dung" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-row text-center">
+
+                                        <button name="contactoption" id="contactoption" type="submit" class="form-btn mx-auto btn-theme bg-orange">Xác Nhận <i class="icofont-rounded-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Details End -->
+    </main>

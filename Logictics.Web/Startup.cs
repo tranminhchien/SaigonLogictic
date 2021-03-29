@@ -53,7 +53,7 @@ namespace Logictics.Web
 
 
             services.AddRazorPages();
-
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();
             JWTConfig(services);
 
             DependencyInjectionConfig(services);

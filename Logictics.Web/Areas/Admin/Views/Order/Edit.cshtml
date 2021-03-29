@@ -135,25 +135,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
-                                @*@{
-                                        var x =1;
-                                        foreach (var item in Model.listDetailTbl) {
-                                            <tr>
-                                                <td>@(x++)</td>
-                                                <td>@Model.listCategoryTbl.FirstOrDefault(c => c.Id == item.ProductCategoryId).Name</td>
-                                                <td>@item.ProductCode</td>
-                                                <td>@item.Description</td>
-                                                <td>@item.Quality</td>
-                                                <td>@item.Weight</td>
-                                                <td>@item.Price</td>
-                                                <td>
-                                                    <div onclick="DeleteDetailOrder('@item.Id')" class="btn btn-warning">Edit</div>
-                                                </td>
-                                            </tr>
-                                        }
-
-                                    }*@
                             </tbody>
                         </table>
                     </div>
@@ -210,6 +191,7 @@
 @section extendScripts{
 
     <script>
+        var orderDetail = @Html.Raw(Json.Serialize(Model.listDetailTbl));
         var table = $('#example1').DataTable({
             "columnDefs": [
                 {
@@ -223,9 +205,9 @@
             ],
             "columns": [
                 { data: null, "render": 'Id' },
-                { data: null, "reder": 'ProductCategoryId' },
+                { data: null, "render": 'ProductCategoryId' },
                 { data: null, "render": 'Category' },
-                { data: null, "render": 'ProductCode' },
+                { data: null, "render": 'productCode' },
                 { data: null, "render": 'Description' },
                 { data: null, "render": 'Quality' },
                 { data: null, "render": 'Weight' },
@@ -237,7 +219,9 @@
                 }
             ]
         });
-
+        $(function () {
+            table.rows.add(orderDetail).draw();
+        });
         //TODO add function remove kanjidetail
         $("#btnAddOrderDetail").click(function () {
             var ProductCategoryId = $("#ListCategory").val();

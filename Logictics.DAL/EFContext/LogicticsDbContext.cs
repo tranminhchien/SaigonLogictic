@@ -59,8 +59,8 @@ namespace Logictics.DAL.EFContext
             modelBuilder.Entity<OrderDetailTbl>(entity =>
             {
                 entity.ToTable("OrderDetailTbl");
-                entity.HasKey(x => x.Id);
-                entity.Property(e => e.Status).HasMaxLength(50).IsUnicode(false);
+                entity.HasKey(x => x.id);
+                entity.Property(e => e.status).HasMaxLength(50).IsUnicode(false);
             });
 
             modelBuilder.Entity<StoreTbl>(entity =>

@@ -97,12 +97,12 @@ namespace Logictics.Web.Areas.Admin.Controllers {
 
         // POST: OrderController/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection) {
+        public JsonResult Edit(OrderCreateModel data) {
             try {
-                return RedirectToAction(nameof(Index));
+                orderService.UpdateOrder(data);
+                return Json(true);
             } catch {
-                return View();
+                return Json(false);
             }
         }
 

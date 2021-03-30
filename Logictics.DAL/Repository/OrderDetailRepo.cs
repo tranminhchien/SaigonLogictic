@@ -24,7 +24,7 @@ namespace Logictics.DAL.Repository
 
         public IQueryable<OrderDetailTbl> GetListByOrderId(string orderId)
         {
-            return Table.Where(x => x.OrderId == orderId);
+            return Table.Where(x => x.orderId == orderId);
         }
     }
 }

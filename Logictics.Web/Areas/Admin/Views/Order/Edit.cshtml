@@ -82,7 +82,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Create</h1>
+                    <h1 class="m-0 text-dark">Edit</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -168,15 +168,19 @@
                             <textarea id="note" name="note" rows="4" cols="50">@Model.orderTbl.Notes</textarea>
                         </div>
                         <div>
+                            <div>
+                                Status
+                            </div>
+                            <div>
+                                @Html.DropDownList("ListStatus", null, null, new { @class = "form-control form-control-sm selectpicker" })
+                            </div>
+                        </div>
+                        <div>
                             <div>&nbsp;</div>
                             <button class="btnAddOrder btn btn-custom-violet" id="btnAddOrder">
-                                Create Order
+                                Update Order
                             </button>
                         </div>
-                    </div>
-
-                    <div class="card-body">
-                        @Html.DropDownList("ListStatus", null, null, new { @class = "form-control form-control-sm selectpicker" })
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -187,11 +191,11 @@
     </section>
     <!-- /.content -->
 </div>
-
+nuơ
 @section extendScripts{
 
     <script>
-        var orderDetail = @Html.Raw(Json.Serialize(Model.listDetailTbl));
+        var order = @Html.Raw(Json.Serialize(Model));
         var table = $('#example1').DataTable({
             "columnDefs": [
                 {
@@ -204,14 +208,18 @@
                 }
             ],
             "columns": [
-                { data: null, "render": 'Id' },
-                { data: null, "render": 'ProductCategoryId' },
-                { data: null, "render": 'Category' },
+                { data: null, "render": 'id' },
+                { data: null, "render": 'productCategoryId' },
+                {
+                    data: null, "render": function (data, type, full, meta) {
+                        return getNameCategoryById(order.listCategoryTbl, data.productCategoryId);
+                    }
+                },
                 { data: null, "render": 'productCode' },
-                { data: null, "render": 'Description' },
-                { data: null, "render": 'Quality' },
-                { data: null, "render": 'Weight' },
-                { data: null, "render": 'Price' },
+                { data: null, "render": 'description' },
+                { data: null, "render": 'quality' },
+                { data: null, "render": 'weight' },
+                { data: null, "render": 'price' },
                 {
                     data: null, "render": function (data, type, full, meta) {
                         return "<button type=\"button\"><div class=\"deleteOrderdetail\">Remove</button>";
@@ -220,54 +228,66 @@
             ]
         });
         $(function () {
-            table.rows.add(orderDetail).draw();
+            table.rows.add(order.listDetailTbl).draw();
         });
+
+        function getNameCategoryById(arr, id) {
+            var x = "NoName";
+            $.each(arr, function (index, value) {
+                if (value.id == id) {
+                    x = value.name;
+                }
+            });
+
+            return x;
+        }
+
         //TODO add function remove kanjidetail
         $("#btnAddOrderDetail").click(function () {
-            var ProductCategoryId = $("#ListCategory").val();
-            var Category = $("#ListCategory option:selected").text();
-            var ProductCode = $("#productCode").val();
-            var Description = $("#description").val();
-            var Quality = $("#quality").val();
-            var Weight = $("#weight").val();
-            var Price = $("#price").val();
-            var Id = '';
+            var productCategoryId = $("#ListCategory").val();
+            var category = $("#ListCategory option:selected").text();
+            var productCode = $("#productCode").val();
+            var description = $("#description").val();
+            var quality = $("#quality").val();
+            var weight = $("#weight").val();
+            var price = $("#price").val();
+            var id = '';
 
             var data = {
-                Id,
-                ProductCategoryId,
-                Category,
-                ProductCode,
-                Description,
-                Quality,
-                Weight,
-                Price
+                id,
+                productCategoryId,
+                category,
+                productCode,
+                description,
+                quality,
+                weight,
+                price
             }
 
             var oldTotal = $("#totalWeight").val();
-            console.log(oldTotal);
             if (oldTotal == undefined || oldTotal == "" || oldTotal == null) {
                 oldTotal = 0;
             }
 
-            var newTotal = parseInt(oldTotal) + parseInt(Weight) * parseInt(Quality);
+            var newTotal = parseInt(oldTotal) + parseInt(weight) * parseInt(quality);
             $("#totalWeight").val(newTotal)
             table.row.add(data);
             table.draw();
-            listOrderDetail.push(data);
+            order.listDetailTbl.push(data);
         });
 
         $("#btnAddOrder").click(function () {
-
+            var Id = order.orderTbl.id;
             var StoreId = $("#ListStore").val();
             var SenderId = $("#ListSender").val();
             var RecipientId = $("#ListRecipient").val();
-            var Shipment = $("#totalWeight").val();
-            var TotalWeight = $("#shipment").val();
+            var TotalWeight = $("#totalWeight").val();
+            var Shipment = $("#shipment").val();
             var Note = $("#note").val();
-
+            var status = $("#ListStatus").val();
+            console.log(Id);
             $.ajax({
-                url: "/Admin/Order/Create",
+                url: "/Admin/Order/Edit",
                 type: "POST",
                 data: {
                     StoreId: StoreId,
@@ -276,8 +296,9 @@
                     Shipment: Shipment,
                     TotalWeight: TotalWeight,
                     Note: Note,
-                    listOrdertail: listOrderDetail
-
+                    listOrdertail: table.data().toArray(),
+                    status,
+                    Id
                 },
                 dataType: "JSON",
                 success: function (response) {
@@ -289,15 +310,15 @@
         //delete row datatable
         $('#example1 tbody').on('click', 'div.deleteOrderdetail', function () {
             var rowIndex = $(this).parents('tr')[0]['rowIndex'];
-            var Weight = table.data()[rowIndex - 1]['Weight'];
-            var Quality = table.data()[rowIndex - 1]['Quality'];
+            var weight = table.data()[rowIndex - 1]['weight'];
+            var quality = table.data()[rowIndex - 1]['quality'];
 
             var oldTotal = $("#totalWeight").val();
             if (oldTotal == undefined || oldTotal == "" || oldTotal == null) {
                 oldTotal = 0;
             }
 
-            var newTotal = parseInt(oldTotal) - parseInt(Weight) * parseInt(Quality);
+            var newTotal = parseInt(oldTotal) - parseInt(weight) * parseInt(quality);
             $("#totalWeight").val(newTotal);
             table
                 .row(rowIndex - 1)

@@ -15,6 +15,6 @@ namespace Logictics.Service.ViewModel
         public string Note { get; set; } = "";
         public string Shipment { get; set; } = "";
         public List<OrderDetailTbl> listOrdertail { get; set; }
-
+        public string status { get; set; }
     }
 }

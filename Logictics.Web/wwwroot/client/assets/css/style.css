@@ -1950,7 +1950,7 @@ h2.h2-xl { font-size: 1.5rem; }     /* 24px */
 	font-weight:400;
 	text-align:center;
 	top: 0;
-    background: var(--primary-color) url(../images/bg-wave.svg) no-repeat;
+    background: var(--primary-color) url(/assets/client/images/bg-wave.svg) no-repeat;
 	background-size: contain;
     background-position: bottom center;
 }

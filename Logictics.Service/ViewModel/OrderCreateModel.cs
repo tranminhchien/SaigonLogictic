@@ -13,6 +13,7 @@ namespace Logictics.Service.ViewModel
         public string RecipientId { get; set; } = "";
         public int? TotalWeight { get; set; }
         public string Note { get; set; } = "";
+        public string PickupDate { get; set; } = "";
         public string Shipment { get; set; } = "";
         public List<OrderDetailTbl> listOrdertail { get; set; }
         public string status { get; set; }

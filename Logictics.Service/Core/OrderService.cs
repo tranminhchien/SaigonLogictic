@@ -71,6 +71,7 @@ namespace Logictics.Service.Core {
             order.Shipment = data.Shipment;
             order.CreateDate = TimestampStaicClass.ConvertTotimestamp(DateTime.UtcNow);
             order.ModifyDate = TimestampStaicClass.ConvertTotimestamp(DateTime.UtcNow);
+            order.PickupDate = TimestampStaicClass.ConvertTotimestamp(DateTime.Parse(data.PickupDate));
             order.Id = Guid.NewGuid().ToString();
 
             orderRepo.Create(order);

@@ -4,6 +4,7 @@
 }
 
 @section extendCSS{
+    <link rel="stylesheet" href="~/assets/plugins/daterangepicker/daterangepicker.css">
     <style>
         .productDetailInput input {
             margin-left: 15px;
@@ -164,6 +165,17 @@
                             <div>Note</div>
                             <textarea id="note" name="note" rows="4" cols="50"></textarea>
                         </div>
+                        <div >
+                            <div>Date:</div>
+
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" id="datepicker" name="pickupDate">
+                            </div>
+                            <!-- /.input group -->
+                        </div>
                         <div>
                             <div>&nbsp;</div>
                             <button class="btnAddOrder btn btn-custom-violet" id="btnAddOrder">
@@ -183,9 +195,15 @@
 </div>
 
 @section extendScripts{
-
+    <script src="~/assets/plugins/daterangepicker/daterangepicker.js"></script>
     <script>
-
+        $('#datepicker').daterangepicker({
+            singleDatePicker: true,
+            locale: {
+                format: 'DD/MM/YYYY hh:mm'
+            },
+            timePicker: true
+        })
         var table = $('#example1').DataTable({
             "columnDefs": [
                 {
@@ -255,6 +273,7 @@
             var TotalWeight = $("#totalWeight").val();
             var Shipment = $("#shipment").val();
             var Note = $("#note").val();
+            var PickupDate = $("#datepicker").val();
             var listOrdertail = table.data().toArray();
             $.ajax({
                 url: "/Admin/Order/Create",
@@ -266,6 +285,7 @@
                     Shipment: Shipment,
                     TotalWeight: TotalWeight,
                     Note: Note,
+                    PickupDate: PickupDate,
                     listOrdertail: listOrdertail
 
                 },

@@ -197,6 +197,10 @@ nuơ
     <script>
         var order = @Html.Raw(Json.Serialize(Model));
         var table = $('#example1').DataTable({
+            "searching": false,
+            "paging": false,
+            "ordering": false,
+            "info": false,
             "columnDefs": [
                 {
                     "targets": [0],

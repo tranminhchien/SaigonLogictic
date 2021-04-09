@@ -1,5 +1,6 @@
 ﻿
 using Logictics.Service.Core;
+using Logictics.Service.ViewModel;
 using Logictics.Web.Auth;
 using Logictics.Web.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -35,6 +36,45 @@ namespace Logictics.Web.Areas.Admin.Controllers
             userService.UpdateStatus(id);
             
             return RedirectToAction("Index", "User");
+        }
+
+        public IActionResult Edit(string id)
+        {
+            return View(userService.GetUserById(id));
+        }
+
+        [HttpPost]
+        public JsonResult Edit(UserViewModel data)
+        {
+            try
+            {
+                userService.UpdateUser(data);
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
+        }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        
+        [HttpPost]
+        public JsonResult Add(UserViewModel data)
+        {
+            try
+            {
+                userService.CreateUser(data);
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
         }
     }
 }

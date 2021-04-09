@@ -1,0 +1,73 @@
+﻿@model Logictics.Service.ViewModel.OrderClientItemReponse
+@{
+    ViewData["Title"] = "OrderDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="slider bg-navy-blue bg-fixed pos-rel breadcrumbs-page">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#"><i class="icofont-home"></i></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Tìm Kiếm</li>
+            </ol>
+        </nav>
+
+        <h1>Chi Tiết Đơn Hàng</h1>
+        <div class="breadcrumbs-description">
+            SG EXPRESS VẬN CHUYỂN HÀNG HÓA VÀ KIỀU HỐI
+        </div>
+    </div>
+</div>
+
+<main id="body-content">
+    @if (Model.SenderName != null)
+    {
+        <!-- Contact Details Start -->
+        <section class="wide-tb-80 contact-full-shadow">
+            <div class="container">
+                <div class="contact-map-bg">
+                    <img src="assets/images/map-bg.png" alt="">
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-md-6 col-sm-12 col-lg-4 wow fadeInRight" data-wow-duration="0" data-wow-delay="0s">
+                        <div class="contact-detail-shadow">
+                            <h4>@Model.SenderName</h4>
+                            <div class="d-flex align-items-start items">
+                                <i class="icofont-google-map"></i> <span>
+                                    @Model.SenderAddress
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-start items">
+                                <i class="icofont-phone"></i> <span>@Model.SenderPhone</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-lg-4 wow fadeInLeft" data-wow-duration="0" data-wow-delay="0s">
+                        <div class="contact-detail-shadow">
+                            <h4>@Model.RecipientName</h4>
+                            <div class="d-flex align-items-start items">
+                                <i class="icofont-google-map"></i> <span>
+                                    @Model.RecipientAddress
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-start items">
+                                <i class="icofont-phone"></i> <span> @Model.RecipientPhone</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Details End -->
+    }
+            else
+            {
+                <h1 style="text-align:center">Đơn hàng không tồn tại</h1>
+            }
+
+
+</main>
+

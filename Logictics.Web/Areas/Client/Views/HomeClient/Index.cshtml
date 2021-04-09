@@ -250,33 +250,18 @@
                 <div class="w-100 d-none d-sm-block d-lg-none spacer-60"></div>
                 <!-- Spacer For Medium -->
                 <!-- Contact Column One -->
-                <div class="col-12 col-lg-3 col-sm-6">
-                    <div class="row align-items-start">
-                        <div class="col-sm-auto col-2 text-center">
-                            <i class="icofont-envelope icofont-2x"></i>
-                        </div>
-                        <div class="col pl-0">
-                            <h5 class="mb-3 h5-xs fw-6">EMAIL Chúng Tôi</h5>
-                            <div class="text">
-                                <a href="#" class="link-light">mail@logzee.com</a><br>
-                                <a href="#" class="link-light">support@logzee.com</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Contact Column One -->
-                <!-- Contact Column One -->
-                <div class="col-12 col-lg-3 col-sm-6">
+                <div class="col-12 col-lg-6 col-sm-12">
                     <div class="row align-items-start">
                         <div class="col-sm-auto col-2 text-center">
                             <i class="icofont-envelope-open icofont-2x"></i>
                         </div>
                         <div class="col pl-0">
-                            <h5 class="mb-3 h5-xs fw-6">Đăng ký Tin</h5>
-                            <div class="text">
-                                <a href="#" class="btn-theme bg-light-theme light tra">
-                                    Bắt đầu ngay!
-                                </a>
+                            <h5 class="mb-3 h5-xs fw-6">Tra Cứu Đơn Hàng</h5>
+                            <div class="footer-subscribe">
+                                <form class="flex-nowrap col ml-auto">
+                                    <input id="order" type="text" class="form-control" placeholder="Nhập Mã Đơn Hàng">
+                                    <a onclick="searchOrder()"  class="btn btn-theme bg-navy-blue">Kiểm Tra <i class="icofont-envelope"></i></a>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -345,7 +330,7 @@
     <!-- What Makes Us Special Start -->
     <section class="bg-light-gray wide-tb-100 bg-wave">
         <div class="container pos-rel">
-            <div class="row"> 
+            <div class="row">
                 <!-- Heading Main -->
                 <div class="col-sm-12 wow fadeInDown" data-wow-duration="0" data-wow-delay="0s">
                     <h1 class="heading-main">
@@ -493,7 +478,7 @@
                     <!-- Heading Main -->
                     <h1 class="heading-main text-left">
                         <span>trạng thái</span>
-                       Đơn hàng của bạn
+                        Đơn hàng của bạn
                     </h1>
                     <!-- Heading Main -->
                     <!-- Tracking Form -->
@@ -513,14 +498,19 @@
         </div>
     </section>
     <!-- Tracking Your Freight End -->
-   
-  
 
-    
+
+
+
 </main>
 <!-- Main Body Content Start -->
 @section Scripts{
     <script type="text/javascript">
+
+        function searchOrder() {
+            var orderId = $("#order").val();
+            window.location.href = '/Client/HomeClient/OrderDetail/' + orderId;
+        }
 
     var tpj=jQuery;
 

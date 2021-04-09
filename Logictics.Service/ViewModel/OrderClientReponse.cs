@@ -8,6 +8,7 @@ namespace Logictics.Service.ViewModel
     {
         public string orderID { get; set; }
         public string orderStatus { get; set; }
+        public DateTime? createDate { get; set; }
 
     }
 }

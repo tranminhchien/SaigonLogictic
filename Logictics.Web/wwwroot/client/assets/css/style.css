@@ -11,7 +11,7 @@ html {
     font-size: 16px;
 }
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu;
     font-size: 0.875rem;
     font-weight: 300;
     color: #999;
@@ -1939,19 +1939,19 @@ h2.h2-xl { font-size: 1.5rem; }     /* 24px */
 /*    Page Loader
 /*------------------------------------------*/
 #pageloader {
-    background:#FFF;
+    background: #FFF;
     height: 100%;
     position: fixed;
-    width: 100%;	
+    width: 100%;
     z-index: 999999;
-	color:#333;
-	font-style:italic;
-	font-size:14px;
-	font-weight:400;
-	text-align:center;
-	top: 0;
-    background: var(--primary-color) url(/assets/client/images/bg-wave.svg) no-repeat;
-	background-size: contain;
+    color: #333;
+    font-style: italic;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    top: 0;
+    background: var(--primary-color) url(/client/assets/images/bg-wave.svg) no-repeat;
+    background-size: contain;
     background-position: bottom center;
 }
 .loader-item {

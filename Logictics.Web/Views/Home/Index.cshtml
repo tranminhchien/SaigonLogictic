@@ -1,7 +1,7 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Trang Chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!-- Fullscreen Slider Start -->
 <div class="slider bg-navy-blue">
     <div id="rev_slider_1078_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="classic4export" data-source="gallery" style="margin:0px auto;background-color:transparent;padding:0px;margin-top:0px;margin-bottom:0px;">
@@ -250,33 +250,18 @@
                 <div class="w-100 d-none d-sm-block d-lg-none spacer-60"></div>
                 <!-- Spacer For Medium -->
                 <!-- Contact Column One -->
-                <div class="col-12 col-lg-3 col-sm-6">
-                    <div class="row align-items-start">
-                        <div class="col-sm-auto col-2 text-center">
-                            <i class="icofont-envelope icofont-2x"></i>
-                        </div>
-                        <div class="col pl-0">
-                            <h5 class="mb-3 h5-xs fw-6">EMAIL Chúng Tôi</h5>
-                            <div class="text">
-                                <a href="#" class="link-light">mail@logzee.com</a><br>
-                                <a href="#" class="link-light">support@logzee.com</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Contact Column One -->
-                <!-- Contact Column One -->
-                <div class="col-12 col-lg-3 col-sm-6">
+                <div class="col-12 col-lg-6 col-sm-12">
                     <div class="row align-items-start">
                         <div class="col-sm-auto col-2 text-center">
                             <i class="icofont-envelope-open icofont-2x"></i>
                         </div>
                         <div class="col pl-0">
-                            <h5 class="mb-3 h5-xs fw-6">Đăng ký Tin</h5>
-                            <div class="text">
-                                <a href="#" class="btn-theme bg-light-theme light tra">
-                                    Bắt đầu ngay!
-                                </a>
+                            <h5 class="mb-3 h5-xs fw-6">Tra Cứu Đơn Hàng</h5>
+                            <div class="footer-subscribe">
+                                <form class="flex-nowrap col ml-auto">
+                                    <input id="order" type="text" class="form-control" placeholder="Nhập Mã Đơn Hàng">
+                                    <a onclick="searchOrder()" class="btn btn-theme bg-navy-blue">Kiểm Tra <i class="icofont-envelope"></i></a>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -521,6 +506,11 @@
 <!-- Main Body Content Start -->
 @section Scripts{
     <script type="text/javascript">
+
+        function searchOrder() {
+            var orderId = $("#order").val();
+            window.location.href = '/Client/HomeClient/OrderDetail/' + orderId;
+        }
 
     var tpj=jQuery;
 

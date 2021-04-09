@@ -31,5 +31,15 @@ namespace Logictics.Web.Areas.Client.Controllers
             }
             return View(clientService.Clientlist(phone));
         }
+
+        // GET: OrderController/Edit/5
+        public IActionResult OrderDetail(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return RedirectToAction("Error400", "Error");
+            }
+            return View(clientService.GetDetail(id));
+        }
     }
 }

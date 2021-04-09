@@ -29,6 +29,10 @@
 
 function initEsuDatatables(tableElement, pageLength = 20, sort = "asc", indexSort = 0, paging = true, search = true) {
     return tableElement.DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+             'excelHtml5'
+        ],
         "paging": paging,
         "lengthChange": false,
         "searching": search,
